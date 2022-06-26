@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/assets/images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>MINIX</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+  <script src="assets/js/slick.min.js"></script>
+  <script src="assets/js/wow.js"></script>
+  <script src="assets/js/wow.min.js"></script>
+  <script>
+      new WOW().init();
+  </script>
+  <script>
+      AOS.init();
+      AOS.init({disable: 'mobile'});
+  </script>
+  
+  <script>
+      function myFunction() {
+          var dots = document.getElementById("dots");
+          var moreText = document.getElementById("more");
+          var btnText = document.getElementById("myBtn");
+
+          if (dots.style.display === "none") {
+              dots.style.display = "inline";
+              // btnText.innerHTML = "Read more";
+              moreText.style.display = "none";
+
+          } else {
+              dots.style.display = "none";
+              // btnText.innerHTML = "Read less";
+              moreText.style.display = "block";
+
+          }
+      }
+  </script>
+  <script>
+      $('.autoplay2').slick({
+          slidesToShow: 4,
+          rtl: false,
+          slidesToScroll: 1,
+          arrows: false,
+          centerMode: false,
+          autoplay: true,
+          dots: true,
+          autoplaySpeed: 3000,
+          // centerMode: true;
+          centerPadding: 0,
+          responsive: [{
+                  breakpoint: 768,
+                  settings: {
+                      arrows: false,
+                      centerMode: true,
+                      centerPadding: '0px',
+                      slidesToShow: 1
+                  }
+              },
+              {
+                  breakpoint: 480,
+                  settings: {
+                      arrows: false,
+                      centerMode: true,
+                      centerPadding: '0px',
+                      slidesToShow: 1
+                  }
+              }
+          ]
+      });
+  </script>
+    <script>
+      const year = new Date().getFullYear();
+      const fourthOfJuly = new Date(year, 8, 16, 22).getTime();
+      // here 5 is basically june month and 16 is the date of june-16 and 22 is an hours.
+      const fourthOfJulyNextYear = new Date(year + 1, 6, 4).getTime();
+      const month = new Date().getMonth();
+  
+      // countdown
+      let timer = setInterval(function () {
+  
+        // get today's date
+        const today = new Date().getTime();
+  
+        // get the difference
+        let diff;
+        if (month > 6) {
+          diff = fourthOfJulyNextYear - today;
+        } else {
+          diff = fourthOfJuly - today;
+        }
+        // math
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  
+        // display
+        document.getElementById("timer").innerHTML =
+          "<div class=\"days\"> \
+              <div class=\"numbers\">" + days + "</div>days</div> \
+              <div class=\"hours\"> \
+                <div class=\"numbers\">" + hours + "</div>hours</div> \
+              <div class=\"minutes\"> \
+                <div class=\"numbers\">" + minutes + "</div>minutes</div> \
+              <div class=\"seconds\"> \
+                <div class=\"numbers\">" + seconds + "</div>seconds</div> \
+              </div>";
+  
+      }, 1000);
+    </script>
+</html>
